@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Mary's ✨ LUXURY HOSTEL | Kurji Patna</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --gold: #ffd700;
+            --ultra-glass: rgba(255, 255, 255, 0.08);
+            --ultra-border: rgba(255, 255, 255, 0.3);
+            --dark-bg: rgba(10, 10, 30, 0.95);
+        }
+        body { 
+            font-family: 'Poppins', sans-serif; overflow-x: hidden; 
+            background: radial-gradient(ellipse at center, #0a0a1e 0%, #1a0033 70%, #000 100%);
+            color: white; line-height: 1.6;
+        }
+        
+        /* Particles */
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .grid-lines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255,0,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 25s linear infinite;
+        }
+        @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(60px, 60px); } }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Navbar */
+        header { 
+            position: fixed; width: 100%; top: 0; z-index: 1000; 
+            background: var(--ultra-glass); backdrop-filter: blur(40px); border-bottom: 2px solid var(--ultra-border);
+            box-shadow: 0 25px 50px rgba(0,255,255,0.2);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 20px; }
+        .logo { 
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--gold)); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: clamp(1.5rem, 5vw, 2.8rem); font-weight: 900; cursor: pointer;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+        @keyframes neonPulse { from { filter: drop-shadow(0 0 10px currentColor); } to { filter: drop-shadow(0 0 25px currentColor); } }
+        
+        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-links a { 
+            color: white; text-decoration: none; font-weight: 700; font-size: clamp(0.9rem, 2vw, 1.1rem);
+            position: relative; transition: all 0.3s ease;
+        }
+        .nav-links a::before {
+            content: ''; position: absolute; bottom: -8px; left: 50%; width: 0; height: 3px; 
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue)); 
+            transform: translateX(-50%); transition: width 0.4s ease; border-radius: 2px;
+        }
+        .nav-links a:hover::before { width: 100%; }
+        
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 30px; height: 3px; background: var(--neon-blue); border-radius: 3px; transition: 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; 
+                position: relative; padding: 120px 20px 80px; }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.2) 0%, transparent 50%);
+            animation: heroBgShift 20s ease-in-out infinite;
+        }
+        @keyframes heroBgShift { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        
+        .hero-content h1 { 
+            font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--gold), var(--neon-pink));
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite; letter-spacing: -2px;
+        }
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        
+        .hero-subtitle { font-size: clamp(1.2rem, 4vw, 2rem); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        .hero-buttons { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .btn-neon { 
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); color: white; 
+            padding: clamp(15px, 4vw, 25px) clamp(30px, 6vw, 60px); border: none; border-radius: 50px; 
+            font-size: clamp(1rem, 3vw, 1.4rem); font-weight: 800; cursor: pointer; transition: all 0.5s ease;
+            box-shadow: 0 0 30px rgba(0,255,255,0.5);
+        }
+        .btn-neon:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 0 50px rgba(0,255,255,0.8); }
+        .btn-gold { background: linear-gradient(45deg, var(--gold), #ffaa00); box-shadow: 0 0 30px rgba(255,215,0,0.6); }
+        
+        /* ROOM GALLERY - NEW SECTION */
+        .room-gallery { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; 
+            padding: 0 20px; max-width: 1400px; margin: 0 auto;
+        }
+        .room-card {
+            position: relative; border-radius: 20px; overflow: hidden; cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); transition: all 0.5s ease;
+        }
+        .room-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 30px 60px rgba(0,255,255,0.4); }
+        .room-img {
+            width: 100%; height: 250px; object-fit: cover; transition: transform 0.5s ease;
+        }
+        .room-card:hover .room-img { transform: scale(1.1); }
+        .room-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2rem 1.5rem 1.5rem; color: white;
+        }
+        .room-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .room-desc { font-size: 1rem; opacity: 0.9; }
+        
+        /* Sections */
+        section { padding: 100px 0; }
+        .section-title { 
+            text-align: center; font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 900; margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 2s ease infinite;
+        }
+        
+        .cards-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; 
+            padding: 0 20px; max-width: 1400px; margin: 0 auto;
+        }
+        .card { 
+            background: var(--ultra-glass); backdrop-filter: blur(40px); border-radius: 25px; padding: 2.5rem 2rem;
+            border: 2px solid var(--ultra-border); transition: all 0.6s ease; cursor: pointer;
+        }
+        .card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(0,255,255,0.3); border-color: var(--neon-blue); }
+        .card-icon { font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 1.5rem; display: block; 
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .card h3 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 1rem; color: white; }
+        .card p { color: rgba(255,255,255,0.95); font-size: clamp(1rem, 2.5vw, 1.2rem); line-height: 1.7; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; 
+                 background: rgba(0,0,0,0.9); backdrop-filter: blur(20px); }
+        .modal-content { 
+            background: var(--ultra-glass); backdrop-filter: blur(50px); margin: 5% auto; padding: 3rem; 
+            border-radius: 30px; width: 90%; max-width: 500px; border: 3px solid var(--neon-blue);
+            animation: modalSlide 0.6s ease;
+        }
+        @keyframes modalSlide { from { opacity: 0; transform: scale(0.8) translateY(-30px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .close { position: absolute; right: 20px; top: 20px; font-size: 2.5rem; cursor: pointer; color: var(--neon-pink); }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { 
+                position: fixed; top: 100%; left: 0; width: 100%; height: 100vh; background: var(--dark-bg); 
+                flex-direction: column; justify-content: center; gap: 3rem; transform: translateY(-100%);
+                transition: transform 0.4s ease; padding: 2rem 0;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .hero-buttons { flex-direction: column; gap: 1rem; }
+            .room-gallery { grid-template-columns: 1fr; gap: 1rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero { padding: 100px 15px 60px; }
+            .room-gallery { padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-lines"></div>
+    <canvas id="particles"></canvas>
+    
+    <header>
+        <nav>
+            <div class="logo" onclick="toggleMenu()">✨ St Mary's LUXURY</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#rooms" onclick="toggleMenu()">🛏️ Rooms</a></li>
+                <li><a href="#girls" onclick="toggleMenu()">👩‍🎓 Girls</a></li>
+                <li><a href="#boys" onclick="toggleMenu()">👨‍🎓 Boys</a></li>
+                <li><a href="#" onclick="openModal(); toggleMenu()">Book Now 🔥</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <h1>LUXURY LIVING</h1>
+            <p class="hero-subtitle">Premium Girls & Boys Hostel<br>Kurji Chasma Center Gali, Patna</p>
+            <div class="hero-buttons">
+                <button class="btn-neon" onclick="scrollTo('rooms')">View Rooms</button>
+                <button class="btn-gold btn-neon" onclick="scrollTo('facilities')">All Facilities</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW ROOM GALLERY SECTION -->
+    <section id="rooms" class="fade-in">
+        <div class="container">
+            <h2 class="section-title">🛏️ LUXURY ROOM GALLERY</h2>
+            <div class="room-gallery">
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Girls Deluxe Room" class="room-img">
+                    <div class="room-overlay">
+                        <div class="room-title">👩‍🎓 Deluxe Girls Room</div>
+                        <div class="room-desc">AC • Attached Bath • Study Table</div>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1560185893-a55f7b2b2129?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Boys Premium Room" class="room-img">
+                    <div class="room-overlay">
+                        <div class="room-title">👨‍🎓 Premium Boys Room</div>
+                        <div class="room-desc">King Size Bed • Wardrobe • Gaming Setup</div>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd2dabb60b29?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury Suite" class="room-img">
+                    <div class="room-overlay">
+                        <div class="room-title">🏰 Luxury Suite</div>
+                        <div class="room-desc">VIP Room • Balcony • Mini Fridge</div>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1578683015141-0acef4a9512b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Common Room" class="room-img">
+                    <div class="room-overlay">
+                        <div class="room-title">📺 Common Lounge</div>
+                        <div class="room-desc">65" Smart TV • Gaming Console • Sofa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="girls" class="fade-in">
+        <div class="container">
+            <h2 class="section-title">👑 GIRLS HOSTEL</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🔒</span>
+                    <h3>FORTRESS SECURITY</h3>
+                    <p>AI CCTV • Biometric Entry • Female Guards 24/7</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">⚡</span>
+                    <h3>POWER BACKUP</h3>
+                    <p>Full Inverter • Solar Panels • 24hr Electricity</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🛏️</span>
+                    <h3>DELUXE ROOMS</h3>
+                    <p>AC Rooms • Designer Furniture • Study Area</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="boys" class="fade-in">
+        <div class="container">
+            <h2 class="section-title">💎 BOYS HOSTEL</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🍽️</span>
+                    <h3>5-STAR MESS</h3>
+                    <p>Home Cooked Meals • RO Water • Weekend Specials</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">⚡️</span>
+                    <h3>ULTRA FAST WIFI</h3>
+                    <p>1Gbps Fiber • Room-wise Connection • Unlimited</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🎮</span>
+                    <h3>GAMING ZONE</h3>
+                    <p>PS5 • 4K TV • Billiards • Gym</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities" class="fade-in">
+        <div class="container">
+            <h2 class="section-title">✨ ALL FACILITIES</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🔥</span>
+                    <h3>24HR HOT WATER</h3>
+                    <p>Instant Geyser in Every Room</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🧺</span>
+                    <h3>LAUNDRY SERVICE</h3>
+                    <p>Free Weekly Pickup & Delivery</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🚨</span>
+                    <h3>EMERGENCY SYSTEMS</h3>
+                    <p>Fire Alarms • Medical Aid • SOS Buttons</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>🔥 INSTANT BOOKING</h2>
+            <form onsubmit="submitForm(event)">
+                <input type="text" placeholder="👤 Full Name *" required>
+                <input type="tel" placeholder="📱 WhatsApp Number *" required>
+                <select required>
+                    <option value="">🏠 Select Hostel</option>
+                    <option>👑 Luxury Girls Hostel</option>
+                    <option>💎 Luxury Boys Hostel</option>
+                </select>
+                <input type="date" required>
+                <textarea placeholder="📍 Permanent Address *" rows="3" required></textarea>
+                <button type="submit">🚀 BOOK YOUR ROOM NOW</button>
+            </form>
+        </div>
+    </div>
+
+    <footer style="background: rgba(0,0,0,0.5); backdrop-filter: blur(20px); text-align: center; padding: 3rem 20px; border-top: 2px solid var(--ultra-border);">
+        <div class="container">
+            <p style="font-size: 1.1rem;">🏰 St Mary's Luxury Hostel | Kurji Chasma Center Gali, Patna 800010<br>
+            📞 +91 96088xxxxx | ⏰ Open 24×7 | ✨ Limited Seats Available</p>
+        </div>
+    </footer>
+
+    <script>
+        // Particles (Mobile Optimized)
+        function initParticles() {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const count = window.innerWidth > 768 ? 120 : 50;
+            const particles = [];
+            for(let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    radius: Math.random() * 2 + 1,
+                    color: Math.random() > 0.5 ? '#ff00ff' : '#00ffff'
+                });
+            }
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+                    ctx.fillStyle = p.color;
+                    ctx.shadowColor = p.color;
+                    ctx.shadowBlur = 10;
+                    ctx.fill();
+                    p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        
+        // Mobile Menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+        
+        // Modal
+        function openModal() { document.getElementById('modal').style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        function submitForm(e) {
+            e.preventDefault();
+            alert('🎉 ROOM BOOKED SUCCESSFULLY! We will call you within 30 minutes! 🔥');
+            closeModal();
+        }
+        function scrollTo(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); toggleMenu(); }
+        
+        // Scroll Animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        // Init
+        window.addEventListener('load', () => { initParticles(); });
+        window.addEventListener('resize', initParticles);
+        window.onclick = (e) => { if(e.target.classList.contains('modal')) closeModal(); };
+    </script>
+</body>
+</html>
